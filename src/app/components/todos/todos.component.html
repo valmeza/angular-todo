@@ -1,5 +1,6 @@
 <h1>Todos</h1>
 
-<ul *ngFor="let todo of todos">
-  <li>{{ todo.title }}</li>
-</ul>
+<!-- instead of a ul we can use the app-todo-item -->
+
+<!-- to pass each iteration of todo we need [todo]="todo" basically passing in like a property to the app-todo-item -->
+<app-todo-item *ngFor="let todo of todos" [todo]="todo"></app-todo-item>
