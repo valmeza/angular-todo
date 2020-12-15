@@ -16,28 +16,20 @@ export class TodosComponent implements OnInit {
   constructor(private todoService: TodoService) { }
 
   ngOnInit(): void {
-    // this.todos = [
-    //   {
-    //     id: 1,
-    //     title: 'Todo 1',
-    //     completed: false,
-    //   },
-    //   {
-    //     id: 2,
-    //     title: 'Todo 2',
-    //     completed: true,
-    //   },
-    //   {
-    //     id: 3,
-    //     title: 'Todo 3',
-    //     completed: false,
-    //   }
-    // ];
     this.todoService.getTodos().subscribe(todos => {
       this.todos = todos;
     });
     // Instead of hard coding now we can use a service to get our todos
     // subscribe to the observable/asynchronous data stream
+  }
+
+  deleteTodo(todo: Todo) {
+    // filter is like foreach or map it will loop through all the todos
+    // but we can add a conditional with filter
+    // this removes it from the UI but not the server
+    this.todos = this.todos.filter(t => t.id !== todo.id); // in this case return anything that does not equal this id
+
+    this.todoService.deleteTodo(todo).subscribe(); // this will remove it from the server
   }
 
 }

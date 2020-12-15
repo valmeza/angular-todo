@@ -1,5 +1,5 @@
 import { TodoService } from './../../services/todo.service';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Todo } from 'src/app/models/Todo';
 
 @Component({
@@ -12,6 +12,9 @@ export class TodoItemComponent implements OnInit {
   // We need to label it as an Input
   // input property
   @Input() todo: Todo;
+
+  // Now we are emitting something out to the parent component
+  @Output() deleteTodo: EventEmitter<Todo> = new EventEmitter(); // this deleteTodo we need to catch in the parent component
 
   constructor(private todoService: TodoService) {}
 
@@ -38,6 +41,6 @@ export class TodoItemComponent implements OnInit {
   }
 
   onDelete(todo) {
-    console.log('Delete');
+    this.deleteTodo.emit(todo);
   }
 }
