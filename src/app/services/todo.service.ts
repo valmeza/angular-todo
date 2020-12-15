@@ -3,6 +3,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+  }),
+};
+
 @Injectable({
   providedIn: 'root',
 })
@@ -18,5 +24,13 @@ export class TodoService {
     // now to make the request
     return this.http.get<Todo[]>(`${this.todosUrl}${this.todosLimit}`); // get takes in the url
     //----------Todo type array
+  }
+
+  // Toggle Completed
+  // put request to update something on the server
+  toggleCompleted(todo: Todo): Observable<any> {
+    const url = `${this.todosUrl}/${todo.id}`; // the url and the todo id that we are trying to update
+    return this.http.put(url, todo, httpOptions); // httpOptions is going to include the header of content type
+    // put will pass in the url, the body of what is being updated, any httpOptions
   }
 }
