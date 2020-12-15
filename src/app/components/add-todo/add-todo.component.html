@@ -1,0 +1,11 @@
+<form class="form" (ngSubmit)="onSubmit()">
+  <!-- to bind title to the property created in the add-todo we us [(ngModel)]="title" -->
+  <input
+    type="text"
+    name="title"
+    [(ngModel)]="title"
+    placeholder="Add todo..."
+  />
+  <!-- in order to use ngModel we need to import the FormsModule in our app.module.ts -->
+  <input type="submit" value="Submit" class="btn">
+</form>

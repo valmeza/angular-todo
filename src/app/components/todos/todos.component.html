@@ -1,7 +1,6 @@
-<h1>Todos</h1>
-
 <!-- instead of a ul we can use the app-todo-item -->
 
+<app-add-todo (addTodo)="addTodo($event)"></app-add-todo>
 <!-- to pass each iteration of todo we need [todo]="todo" basically passing in like a property to the app-todo-item -->
 <app-todo-item
   *ngFor="let todo of todos"
